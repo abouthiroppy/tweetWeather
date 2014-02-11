@@ -2,7 +2,7 @@
 
 //////////////////////////////////////////////////////////////
 /* API http://weather.livedoor.com/weather_hacks/           */
-/* twitter library http://github.com/abraham/twitteroauth  */
+/* twitter library http://github.com/abraham/twitteroauth   */
 //////////////////////////////////////////////////////////////
 
 
@@ -67,7 +67,6 @@ function tweetWeather($day){
 
 setTwitter();
 getWeather();
-tweetWeather(0); //n日後
 
 //朝 今日の天気 夜 明日の天気 
 /////////////////////////////////////
@@ -89,4 +88,6 @@ function changeData($n){
     fwrite($fp, $n);
     fclose($fp);
 }
+/////////////////////////////////////
+
 ?>
