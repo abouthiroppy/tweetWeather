@@ -13,12 +13,15 @@ require_once("weatherClass.php");
 ////////////////////////////////////////
 function setTwitter(){
     global $connection;
-    //key
-    $consumerKey = "";
-    $consumerSecret = "";
-    $accessToken = "";
-    $accessTokenSecret = "";
 
+    $file = file_get_contents("key.txt");
+    $key = explode("\n", $file);
+
+    //key
+    $consumerKey = $key[0];
+    $consumerSecret = $key[1];
+    $accessToken = $key[2];
+    $accessTokenSecret = $key[3];
     $connection = new TwitterOAuth($consumerKey,$consumerSecret,$accessToken,$accessTokenSecret);    
 }
 
@@ -56,12 +59,14 @@ function tweetWeather($day){
     global $weatherArray;
     global $connection;
     $description = $weatherArray[$day] -> getDescription();
-    echo $description."\n";
-    $status = $connection->post('statuses/update', array('status' =>  $description));
+    $pubDate = $weatherArray[$day] -> getPubDate();
+    $deployStr = $pubDate." ".$description;
+    /* echo $description."\n"; */
+    /* $status = $connection->post('statuses/update', array('status' =>  $description)); */
 }
 ///////////////////////////////////////
 
 setTwitter();
 getWeather();
-tweetWeather(1); //n日後
+tweetWeather(0); //n日後
 ?>
