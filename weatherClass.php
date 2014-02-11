@@ -10,7 +10,7 @@ class weather{
         $this -> title = trim($title);
         $this -> link = trim($link);
         $this -> day = trim($day);
-        $this -> description = trim($description);
+        $this -> description = explode("でしょう。", $description)[0]."です!";
         $this -> pubDate = trim($pubDate);
     }
 
