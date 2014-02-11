@@ -21,5 +21,10 @@ class weather{
     public function getDescription(){
         return $this -> description;
     }
+
+    public function getPubDate(){
+        return $this -> pubDate;
+    }
+
 }
 ?>
