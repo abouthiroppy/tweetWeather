@@ -1,10 +1,11 @@
 <?php
 
 //////////////////////////////////////////////////////////////
+/*over php version 5.4                                      */
 /* API http://weather.livedoor.com/weather_hacks/           */
 /* twitter library http://github.com/abraham/twitteroauth   */
 //////////////////////////////////////////////////////////////
-
+header("Content-Type: text/html; charset=UTF-8");
 
 require_once("twitteroauth/twitteroauth.php");
 require_once("weatherClass.php");
@@ -37,7 +38,7 @@ function getWeather(){
     $contents = file_get_contents($url);
     $xml = simplexml_load_string($contents);
     $itemList = $xml -> channel -> item;
-    $flag = false; //item[0]がようわからん説明文のため回避
+    $flag = false;
     
     foreach($itemList as $item){
         if(!$flag){
