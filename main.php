@@ -2,7 +2,7 @@
 
 //////////////////////////////////////////////////////////////
 /* API http://weather.livedoor.com/weather_hacks/           */
-/* twitter library https://github.com/abraham/twitteroauth  */
+/* twitter library http://github.com/abraham/twitteroauth  */
 //////////////////////////////////////////////////////////////
 
 
@@ -61,12 +61,32 @@ function tweetWeather($day){
     $description = $weatherArray[$day] -> getDescription();
     $pubDate = $weatherArray[$day] -> getPubDate();
     $deployStr = $pubDate." ".$description;
-    /* echo $description."\n"; */
-    /* $status = $connection->post('statuses/update', array('status' =>  $description)); */
+    $status = $connection->post('statuses/update', array('status' =>  $deployStr));
 }
 ///////////////////////////////////////
 
 setTwitter();
 getWeather();
 tweetWeather(0); //n日後
+
+//朝 今日の天気 夜 明日の天気 
+/////////////////////////////////////
+//check.txt 0 or 1        0 今日 1 明日
+
+$fp = fopen("check.txt", "r");
+if(fgets($fp) == "0"){
+    tweetWeather(0);
+    changeData(1);
+}
+else{
+    tweetWeather(1);
+    changeData(0);
+}
+fclose($fp);
+
+function changeData($n){
+    $fp = fopen("check.txt", "w");
+    fwrite($fp, $n);
+    fclose($fp);
+}
 ?>
