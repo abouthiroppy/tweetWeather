@@ -10,7 +10,7 @@ class weather{
         $this -> title = trim($title);
         $this -> link = trim($link);
         $this -> day = trim($day);
-        $this -> description = explode("でしょう。", $description)[0]."です!";
+        $this -> description = " 会津若松市の".explode("でしょう。", $description)[0]."です!";
         $this -> pubDate = trim($pubDate);
     }
 
