@@ -5,6 +5,7 @@
 /* API http://weather.livedoor.com/weather_hacks/           */
 /* twitter library http://github.com/abraham/twitteroauth   */
 //////////////////////////////////////////////////////////////
+
 header("Content-Type: text/html; charset=UTF-8");
 
 require_once("twitteroauth/twitteroauth.php");
