@@ -62,7 +62,7 @@ function tweetWeather($day){
     global $connection;
     $description = $weatherArray[$day] -> getDescription();
     $pubDate = $weatherArray[$day] -> getPubDate();
-    $deployStr = $pubDate." ".$description;
+    $deployStr = "@about_hiroppy ".$pubDate." ".$description;
     $status = $connection->post('statuses/update', array('status' =>  $deployStr));
 }
 ///////////////////////////////////////
